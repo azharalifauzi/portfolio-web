@@ -21,6 +21,7 @@ model Project {
   description  String
   achievements String[]
   isOnGoing    Boolean
+  role         String?
 }
 
 model ImageProject {

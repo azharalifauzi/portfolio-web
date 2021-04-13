@@ -53,6 +53,7 @@ const typeDefs = gql`
     description: String!
     achievements: [String!]!
     isOnGoing: Boolean!
+    role: String!
   }
 
   type ImageProject {
@@ -88,11 +89,12 @@ const typeDefs = gql`
     madeAt: String
     builtWith: [String]
     links: [LinkInput]
-    isArchive: Boolean!
-    isFeatured: Boolean!
+    isArchive: Boolean = false
+    isFeatured: Boolean = false
     description: String!
     achievements: [String!]
-    isOnGoing: Boolean!
+    isOnGoing: Boolean = false
+    role: String!
   }
 
   input UpdateProjectInput {
@@ -106,6 +108,7 @@ const typeDefs = gql`
     description: String
     achievements: [String]
     isOnGoing: Boolean
+    role: String
   }
 
   input UploadImageInput {

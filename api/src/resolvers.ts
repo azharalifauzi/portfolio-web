@@ -96,7 +96,8 @@ const resolvers: IResolvers<any, { prisma: any }> = {
     },
     updateProject: async (_, args, { prisma }) => {
       const { links, ...data } = args.data;
-      if (links?.length > 0)
+
+      if (links)
         await prisma.link.deleteMany({
           where: {
             projectID: args.id,
