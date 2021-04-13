@@ -1,0 +1,47 @@
+datasource db {
+  url      = env("POSTGRES_URL")
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Project {
+  id           String         @id @default(uuid())
+  createdAt    DateTime       @default(now())
+  name         String
+  year         String
+  madeAt       String?
+  builtWith    String[]
+  links        Link[] 
+  isArchive    Boolean
+  images       ImageProject[]
+  isFeatured   Boolean
+  description  String
+  achievements String[]
+  isOnGoing    Boolean
+}
+
+model ImageProject {
+  id        String   @id @default(uuid())
+  url       String
+  alt       String?
+  projectID String
+  project   Project  @relation(references: [id], fields: [projectID])
+  createdAt DateTime @default(now())
+  isPrimary Boolean
+}
+
+model Link {
+  id        String   @id @default(uuid())
+  projectID String
+  project   Project  @relation(references: [id], fields: [projectID])
+  type      LinkType
+  link      String
+}
+
+enum LinkType {
+  github
+  website
+}
