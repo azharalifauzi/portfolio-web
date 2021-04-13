@@ -53,7 +53,7 @@ const typeDefs = gql`
     description: String!
     achievements: [String!]!
     isOnGoing: Boolean!
-    role: String!
+    role: String
   }
 
   type ImageProject {
@@ -94,7 +94,7 @@ const typeDefs = gql`
     description: String!
     achievements: [String!]
     isOnGoing: Boolean = false
-    role: String!
+    role: String
   }
 
   input UpdateProjectInput {
