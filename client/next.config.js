@@ -27,4 +27,7 @@ module.exports = withPlugins([[withImages, { fileExtensions: ['jpg', 'jpeg', 'pn
 
     return config;
   },
+  images: {
+    domains: ['filestream'],
+  },
 });

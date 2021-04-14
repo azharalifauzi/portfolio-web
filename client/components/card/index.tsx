@@ -1,49 +1,38 @@
 import { AspectRatio } from '@chakra-ui/layout';
 import { IconFolder, IconGithub, IconLaunch } from 'assets';
 
-interface CardProps {
-  name?: string;
-  description?: string;
-  builtWith?: string[];
-  links?: {
-    type: 'github' | 'link';
-    url: string;
-  }[];
+interface CardProps extends Project {
   className?: string;
 }
 
-const Card: React.FC<CardProps> = () => {
+const Card: React.FC<CardProps> = ({ className, name, description, builtWith, links }) => {
   return (
-    <AspectRatio background="grey.2" ratio={1}>
+    <AspectRatio className={className} background="grey.2" ratio={1}>
       <div className="flex flex-col justify-start items-strech px-6 py-4">
         <div className="flex items-center justify-between  w-full">
           <IconFolder />
           <div className="flex items-center">
-            <a
-              className="mr-3 last:mr-0"
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <IconGithub />
-            </a>
-            <a
-              className="mr-3 last:mr-0"
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <IconLaunch />
-            </a>
+            {links?.map(({ id, link, type }) => (
+              <a
+                key={id}
+                className="mr-3 last:mr-0"
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {type === 'github' ? <IconGithub /> : <IconLaunch />}
+              </a>
+            ))}
           </div>
         </div>
-        <h5 className="text-h5 font-semibold text-black mt-6 mb-3">
-          Realtime Chat App for health consultation
-        </h5>
-        <p className="text-black">Healthcare mobile app, built using React Native and Firebase.</p>
+        <h5 className="text-h5 font-semibold text-black mt-6 mb-3">{name}</h5>
+        <p className="text-black">{description}</p>
         <div className="mt-auto grid gap-2.5 auto-cols-max w-full grid-flow-col">
-          <span className="text-body-sm text-grey-1">React Native</span>
-          <span className="text-body-sm text-grey-1">Firebase</span>
+          {builtWith?.map((tech) => (
+            <span key={tech} className="text-body-sm text-grey-1">
+              {tech}
+            </span>
+          ))}
         </div>
       </div>
     </AspectRatio>

@@ -1,19 +1,24 @@
-import { useQuery, gql } from '@apollo/client';
+import { gql } from '@apollo/client';
 import { Button } from '@chakra-ui/button';
+import { client } from 'apollo-client';
 import { IconCodeThinking, IconGithub, IconGitlab, IconLinkedin, ImgMe } from 'assets';
-import { useState } from 'react';
-import Image from 'next/image';
 import { Card, FeaturedProject } from 'components';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import Image from 'next/image';
 
 const GET_PROJECTS = gql`
-  query GetProjects($isFeatured: Boolean) {
-    projects(sortBy: year, sort: asc, filter: { isFeatured: $isFeatured }) {
+  query GetProjects {
+    featuredProjects: projects(sortBy: year, sort: asc, filter: { isFeatured: true }) {
       id
       name
+      description
       year
       madeAt
+      role
       isFeatured
       isOnGoing
+      builtWith
+      achievements
       images {
         id
         url
@@ -21,6 +26,19 @@ const GET_PROJECTS = gql`
         alt
       }
       links {
+        id
+        type
+        link
+      }
+    }
+
+    normalProjects: projects(filter: { isFeatured: false }) {
+      id
+      name
+      description
+      builtWith
+      links {
+        id
         type
         link
       }
@@ -28,14 +46,29 @@ const GET_PROJECTS = gql`
   }
 `;
 
-export default function Home() {
-  const [isFeatured, setFeatured] = useState<boolean>(false);
-  const { data } = useQuery(GET_PROJECTS, {
-    variables: {
-      isFeatured,
-    },
+interface HomePageProps {
+  featuredProjects: Project[];
+  normalProjects: Project[];
+}
+
+export const getStaticProps: GetStaticProps<HomePageProps> = async (context) => {
+  // ...
+  const { data } = await client.query({
+    query: GET_PROJECTS,
   });
 
+  return {
+    props: {
+      featuredProjects: data.featuredProjects,
+      normalProjects: data.normalProjects,
+    },
+  };
+};
+
+export default function Home({
+  normalProjects,
+  featuredProjects,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <main>
@@ -103,7 +136,9 @@ export default function Home() {
         <section id="featured-projects" className="container mx-auto mb-20">
           <div className="px-6 md:px-10">
             <h2 className="text-h3 font-semibold text-blue mb-12">Featured Projects</h2>
-            <FeaturedProject />
+            {featuredProjects?.map(({ id, ...otherProps }) => (
+              <FeaturedProject className="mb-20 last:mb-0" key={id} {...otherProps} />
+            ))}
           </div>
         </section>
 
@@ -114,9 +149,9 @@ export default function Home() {
             to create awesome thing. But mostly it’s for learning purposes.
           </p>
           <div className="grid grid-cols-3 gap-8 max-w-[1114px] mx-auto">
-            <Card />
-            <Card />
-            <Card />
+            {normalProjects?.map(({ id, ...otherProps }) => (
+              <Card key={id} {...otherProps} />
+            ))}
           </div>
         </section>
 
