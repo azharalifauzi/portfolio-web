@@ -1,5 +1,6 @@
 import { AspectRatio } from '@chakra-ui/layout';
 import { IconFolder, IconGithub, IconLaunch } from 'assets';
+import clsx from 'clsx';
 
 interface CardProps extends Project {
   className?: string;
@@ -7,7 +8,14 @@ interface CardProps extends Project {
 
 const Card: React.FC<CardProps> = ({ className, name, description, builtWith, links }) => {
   return (
-    <AspectRatio className={className} background="grey.2" ratio={1}>
+    <AspectRatio
+      className={clsx(
+        className,
+        'group cursor-pointer transform transition-all hover:-translate-y-1'
+      )}
+      background="grey.2"
+      ratio={1}
+    >
       <div className="flex flex-col justify-start items-strech px-6 py-4">
         <div className="flex items-center justify-between  w-full">
           <IconFolder />
@@ -20,12 +28,16 @@ const Card: React.FC<CardProps> = ({ className, name, description, builtWith, li
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {type === 'github' ? <IconGithub /> : <IconLaunch />}
+                {type === 'github' ? (
+                  <IconGithub className="ic-stroke-blue" />
+                ) : (
+                  <IconLaunch className="ic-stroke-blue" />
+                )}
               </a>
             ))}
           </div>
         </div>
-        <h5 className="text-h5 font-semibold text-black mt-6 mb-3">{name}</h5>
+        <h5 className="text-h5 font-semibold text-black mt-6 mb-3 group-hover:text-blue">{name}</h5>
         <p className="text-black">{description}</p>
         <div className="mt-auto grid gap-2.5 auto-cols-max w-full grid-flow-col">
           {builtWith?.map((tech) => (

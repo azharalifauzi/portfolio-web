@@ -1,0 +1,160 @@
+import { gql } from '@apollo/client';
+import { client } from 'apollo-client';
+import { IconGithub, IconLaunch } from 'assets';
+import { Footer, Navbar, TableGrid } from 'components';
+import { motion } from 'framer-motion';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
+
+const GET_PROJECTS = gql`
+  query GetProjects {
+    projects(sortBy: year, sort: desc) {
+      id
+      name
+      year
+      madeAt
+      builtWith
+      links {
+        id
+        type
+        link
+      }
+    }
+  }
+`;
+
+interface ArchivePage {
+  projects: Project[];
+}
+
+export const getStaticProps: GetStaticProps<ArchivePage> = async (context) => {
+  // ...
+  const { data } = await client.query({
+    query: GET_PROJECTS,
+  });
+
+  return {
+    props: {
+      projects: data.projects,
+    },
+    revalidate: 60,
+  };
+};
+
+const ArchivePage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ projects }) => {
+  const variants = {
+    initial: {
+      opacity: 0,
+      y: 40,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+    },
+  };
+
+  return (
+    <>
+      <Navbar />
+      <section id="id" className="container mx-auto md:px-10 px-6 mt-40">
+        <motion.h1
+          animate="show"
+          variants={variants}
+          initial="initial"
+          transition={{ duration: 0.2 }}
+          className="text-h1 font-semibold text-blue"
+        >
+          Archive
+        </motion.h1>
+        <motion.h2
+          animate="show"
+          variants={variants}
+          initial="initial"
+          transition={{ duration: 0.2, delay: 0.2 }}
+          className="text-h5 text-grey-1 mb-20"
+        >
+          Here are things I've built so far
+        </motion.h2>
+        <motion.div
+          animate="show"
+          variants={variants}
+          initial="initial"
+          transition={{ duration: 0.2, delay: 0.4 }}
+          className="mb-20"
+        >
+          <TableGrid
+            columns={[
+              {
+                field: 'year',
+                name: 'Year',
+                width: '60px',
+              },
+              {
+                field: 'name',
+                name: 'Title',
+              },
+              {
+                field: 'madeAt',
+                name: 'madeAt',
+                width: '250px',
+              },
+              {
+                field: 'builtWith',
+                name: 'Built With',
+                width: '0.8fr',
+              },
+              {
+                field: 'links',
+                name: 'Link',
+                width: '150px',
+              },
+            ]}
+            data={projects}
+            onRenderField={(field, value, { key }) => {
+              if (field === 'madeAt' && !value) return <div key={key}>-</div>;
+
+              if (field === 'year')
+                return (
+                  <div key={key} className="font-semibold text-blue">
+                    {value}
+                  </div>
+                );
+
+              if (field === 'name')
+                return (
+                  <div key={key} className="font-semibold text-black">
+                    {value}
+                  </div>
+                );
+
+              if (field === 'links')
+                return (
+                  <div key={key} className="grid grid-flow-col auto-cols-max gap-x-4">
+                    {value?.map(({ id, type, link }) => (
+                      <a href={link} key={id} target="_blank" rel="noopener noreferrer">
+                        {type === 'website' ? (
+                          <IconLaunch className="ic-stroke-blue" />
+                        ) : (
+                          <IconGithub className="ic-stroke-blue" />
+                        )}
+                      </a>
+                    ))}
+                  </div>
+                );
+
+              if (field === 'builtWith')
+                return (
+                  <div key={key} className="text-[14px]">
+                    {value?.join('  •  ')}
+                  </div>
+                );
+            }}
+            config={{ textColorHead: 'grey-1', animationInView: true }}
+          />
+        </motion.div>
+      </section>
+      <Footer />
+    </>
+  );
+};
+
+export default ArchivePage;
