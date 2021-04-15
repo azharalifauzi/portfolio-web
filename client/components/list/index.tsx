@@ -10,7 +10,7 @@ interface ListProps {
 const List: React.FC<ListProps> = ({ className, children, size = 'md', color = 'black' }) => {
   return (
     <div className={clsx('flex items-center', className)}>
-      <IconTriangle className="mr-2.5" />
+      <IconTriangle className="mr-2.5 min-w-[6px]" />
       <span
         className={clsx(`text-${color}`, {
           'text-body': size === 'md',

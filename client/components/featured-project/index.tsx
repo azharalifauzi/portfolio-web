@@ -25,9 +25,9 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({
   return (
     <div
       style={{ gridTemplateColumns: 'minmax(auto, 485px) 1fr' }}
-      className={clsx('grid gap-x-20', className)}
+      className={clsx('lg:grid gap-x-20', className)}
     >
-      <div className="max-w-[485px] relative">
+      <div className="max-w-[485px] relative mb-5 lg:mb-0">
         <Image
           src={primaryImage ? `http://filestream:4000/${primaryImage?.url}` : ImgDummy}
           layout="responsive"
@@ -36,31 +36,35 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({
         />
       </div>
       <div>
-        <div className="flex items-center">
-          <h4 className="text-h4 text-black font-semibold mr-3">{name}</h4>
-          <Badge
-            marginRight="4"
-            paddingX="2"
-            fontWeight="normal"
-            rounded="xl"
-            textColor="white"
-            bgColor="blue"
-          >
-            {isOnGoing ? 'Ongoing' : year}
-          </Badge>
-          {links?.map(({ type, link, id }) => {
-            return (
-              <a
-                key={id}
-                className="mr-3 last:mr-0"
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {type === 'github' ? <IconGithub /> : <IconLaunch />}
-              </a>
-            );
-          })}
+        <div className="flex md:flex-row flex-col md:items-center">
+          <div className="flex items-center mb-2 md:mb-0">
+            <h4 className="md:text-h4 text-h5 text-black font-semibold mr-3">{name}</h4>
+            <Badge
+              marginRight="4"
+              paddingX="2"
+              fontWeight="normal"
+              rounded="xl"
+              textColor="white"
+              bgColor="blue"
+            >
+              {isOnGoing ? 'Ongoing' : year}
+            </Badge>
+          </div>
+          <div className="flex items-center mb-2 md:mb-0">
+            {links?.map(({ type, link, id }) => {
+              return (
+                <a
+                  key={id}
+                  className="mr-3 last:mr-0"
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {type === 'github' ? <IconGithub /> : <IconLaunch />}
+                </a>
+              );
+            })}
+          </div>
         </div>
         <h6 className="text-body text-grey-1 mb-4">{role}</h6>
         <div className="flex items-center mb-4">

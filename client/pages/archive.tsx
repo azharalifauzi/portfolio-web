@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+import { useMediaQuery } from '@chakra-ui/media-query';
 import { client } from 'apollo-client';
 import { IconGithub, IconLaunch } from 'assets';
 import { Footer, Navbar, TableGrid } from 'components';
@@ -41,6 +42,8 @@ export const getStaticProps: GetStaticProps<ArchivePage> = async (context) => {
 };
 
 const ArchivePage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ projects }) => {
+  const isMobile = useMediaQuery('(max-width: 1024px)');
+
   const variants = {
     initial: {
       opacity: 0,
@@ -61,7 +64,7 @@ const ArchivePage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
           variants={variants}
           initial="initial"
           transition={{ duration: 0.2 }}
-          className="text-h1 font-semibold text-blue"
+          className="md:text-h1 text-h3 font-semibold text-blue"
         >
           Archive
         </motion.h1>
@@ -70,7 +73,7 @@ const ArchivePage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
           variants={variants}
           initial="initial"
           transition={{ duration: 0.2, delay: 0.2 }}
-          className="text-h5 text-grey-1 mb-20"
+          className="md:text-h5 text-body text-grey-1 mb-20"
         >
           Here are things I've built so far
         </motion.h2>
@@ -82,32 +85,52 @@ const ArchivePage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
           className="mb-20"
         >
           <TableGrid
-            columns={[
-              {
-                field: 'year',
-                name: 'Year',
-                width: '60px',
-              },
-              {
-                field: 'name',
-                name: 'Title',
-              },
-              {
-                field: 'madeAt',
-                name: 'madeAt',
-                width: '250px',
-              },
-              {
-                field: 'builtWith',
-                name: 'Built With',
-                width: '0.8fr',
-              },
-              {
-                field: 'links',
-                name: 'Link',
-                width: '150px',
-              },
-            ]}
+            columns={
+              isMobile[0]
+                ? [
+                    {
+                      field: 'year',
+                      name: 'Year',
+                      width: '40px',
+                    },
+                    {
+                      field: 'name',
+                      name: 'Title',
+                    },
+
+                    {
+                      field: 'links',
+                      name: 'Link',
+                      width: '70px',
+                    },
+                  ]
+                : [
+                    {
+                      field: 'year',
+                      name: 'Year',
+                      width: '60px',
+                    },
+                    {
+                      field: 'name',
+                      name: 'Title',
+                    },
+                    {
+                      field: 'madeAt',
+                      name: 'madeAt',
+                      width: '250px',
+                    },
+                    {
+                      field: 'builtWith',
+                      name: 'Built With',
+                      width: '0.8fr',
+                    },
+                    {
+                      field: 'links',
+                      name: 'Link',
+                      width: '150px',
+                    },
+                  ]
+            }
             data={projects}
             onRenderField={(field, value, { key }) => {
               if (field === 'madeAt' && !value) return <div key={key}>-</div>;

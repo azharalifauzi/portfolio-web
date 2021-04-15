@@ -1,0 +1,43 @@
+.hamburger {
+  height: 3px;
+  width: 36px;
+  background: white;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.hamburger::after,
+.hamburger::before {
+  height: 100%;
+  width: 36px;
+  position: absolute;
+  right: 0;
+  background: white;
+  content: '';
+  transform-origin: center;
+  transition: all 0.3s;
+}
+
+.hamburger::before {
+  top: -10px;
+}
+
+.hamburger::after {
+  top: 10px;
+}
+
+.active.hamburger::after {
+  transform: rotate(-135deg);
+  top: 0;
+  right: -18px;
+}
+
+.active.hamburger::before {
+  transform: rotate(135deg);
+  top: 0;
+  right: -18px;
+}
+
+.active.hamburger {
+  width: 0;
+}

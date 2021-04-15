@@ -37,8 +37,10 @@ const Card: React.FC<CardProps> = ({ className, name, description, builtWith, li
             ))}
           </div>
         </div>
-        <h5 className="text-h5 font-semibold text-black mt-6 mb-3 group-hover:text-blue">{name}</h5>
-        <p className="text-black">{description}</p>
+        <h5 className="text-h5 font-semibold text-black mt-6 mb-3 group-hover:text-blue w-full">
+          {name}
+        </h5>
+        <p className="text-black w-full">{description}</p>
         <div className="mt-auto grid gap-2.5 auto-cols-max w-full grid-flow-col">
           {builtWith?.map((tech) => (
             <span key={tech} className="text-body-sm text-grey-1">
