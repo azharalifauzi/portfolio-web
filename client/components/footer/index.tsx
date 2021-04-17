@@ -11,7 +11,7 @@ const Footer = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <IconGithub />
+          <IconGithub className="ic-stroke-blue" />
         </a>
         <a
           className="mr-3 last:mr-0"
@@ -19,7 +19,7 @@ const Footer = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <IconLinkedin />
+          <IconLinkedin className="ic-stroke-blue" />
         </a>
         <a
           className="mr-3 last:mr-0"
@@ -27,7 +27,7 @@ const Footer = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <IconGitlab />
+          <IconGitlab className="ic-stroke-blue" />
         </a>
       </div>
     </footer>

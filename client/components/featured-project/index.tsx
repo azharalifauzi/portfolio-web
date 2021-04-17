@@ -91,7 +91,11 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {type === 'github' ? <IconGithub /> : <IconLaunch />}
+                    {type === 'github' ? (
+                      <IconGithub className="ic-stroke-blue" />
+                    ) : (
+                      <IconLaunch className="ic-fill-blue" />
+                    )}
                   </a>
                 );
               })}

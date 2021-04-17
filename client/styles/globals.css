@@ -11,3 +11,7 @@ body {
 .ic-stroke-blue:hover path {
   stroke: #1a6fef;
 }
+
+.ic-fill-blue:hover path {
+  fill: #1a6fef;
+}
