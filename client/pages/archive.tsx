@@ -27,7 +27,7 @@ interface ArchivePage {
   projects: Project[];
 }
 
-export const getStaticProps: GetStaticProps<ArchivePage> = async (context) => {
+export const getStaticProps: GetStaticProps<ArchivePage> = async () => {
   // ...
   const { data } = await client.query({
     query: GET_PROJECTS,
@@ -75,7 +75,7 @@ const ArchivePage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
           transition={{ duration: 0.2, delay: 0.2 }}
           className="md:text-h5 text-body text-grey-1 mb-20"
         >
-          Here are things I've built so far
+          Here are things I&apos;ve built so far
         </motion.h2>
         <motion.div
           animate="show"

@@ -55,7 +55,7 @@ interface HomePageProps {
   normalProjects: Project[];
 }
 
-export const getStaticProps: GetStaticProps<HomePageProps> = async (context) => {
+export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
   const { data } = await client.query({
     query: GET_PROJECTS,
   });
@@ -83,7 +83,7 @@ export default function Home({
         delay: i * 0.1,
       },
     }));
-  }, []);
+  }, [controls]);
 
   const variants = {
     initial: {
@@ -248,7 +248,7 @@ export default function Home({
                 >
                   Featured Projects
                 </motion.h2>
-                {featuredProjects?.map(({ id, ...otherProps }, i) => (
+                {featuredProjects?.map(({ id, ...otherProps }) => (
                   <InView key={id} triggerOnce threshold={0.5}>
                     {({ inView, ref }) => (
                       <motion.div
@@ -279,7 +279,7 @@ export default function Home({
                   initial="initial"
                   className="md:text-h3 text-h4 font-semibold text-blue text-center mb-4"
                 >
-                  Something I've Built
+                  Something I&apos;ve Built
                 </motion.h2>
                 <motion.p
                   animate={inView ? 'show' : undefined}
@@ -361,8 +361,8 @@ export default function Home({
               <p className="text-black text-center max-w-[664px] mx-auto mb-9">
                 Currently I’m looking for new oppurtunities for fulltime job as Front End Engineer
                 or Full Stack Engineer especially with company that offering remote job. If you have
-                a question or just want to say hi, my inbox is always open. And I'll try my best to
-                get back to you!
+                a question or just want to say hi, my inbox is always open. And I&apos;ll try my
+                best to get back to you!
               </p>
               <div className="flex justify-center">
                 <Button
