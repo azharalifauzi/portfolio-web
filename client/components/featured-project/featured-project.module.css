@@ -1,0 +1,9 @@
+.hover {
+  display: block;
+}
+
+@media (hover: hover) {
+  .hover {
+    display: none;
+  }
+}

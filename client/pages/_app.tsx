@@ -2,6 +2,7 @@ import '../styles/globals.css';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { ApolloProvider } from '@apollo/client';
 import { client } from 'apollo-client';
+import 'react-image-lightbox/style.css';
 
 const theme = extendTheme({
   colors: {
