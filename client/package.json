@@ -45,5 +45,10 @@
     "postcss": "^8.2.10",
     "tailwindcss": "^2.1.1",
     "typescript": "^4.2.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
   }
 }
