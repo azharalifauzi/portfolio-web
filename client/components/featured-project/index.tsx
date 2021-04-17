@@ -45,9 +45,9 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({
         className={clsx('lg:grid gap-x-20', className)}
       >
         <div className="mb-5 lg:mb-0">
-          <div
+          <button
             onClick={() => setShowAllImages(true)}
-            className="max-w-[485px] group cursor-pointer relative relative overflow-hidden"
+            className="max-w-[485px] group cursor-pointer relative relative overflow-hidden focus:outline-none block w-full"
           >
             <Image
               src={primaryImage ? `http://filestream:4000/${primaryImage?.url}` : ImgDummy}
@@ -58,7 +58,7 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({
             <div className="bg-black bg-opacity-50 absolute top-0 left-0 w-full h-full transform transition-all duration-500 translate-y-full group-hover:translate-y-0 flex items-center justify-center text-h5 text-white">
               See All Images
             </div>
-          </div>
+          </button>
           <button
             onClick={() => setShowAllImages(true)}
             className={clsx('underline focus:outline-none mt-2 text-grey-1', styles.hover)}

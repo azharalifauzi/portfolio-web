@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="grid grid-cols-3 w-[120px] mx-auto gap-6">
         <a
           className="mr-3 last:mr-0"
-          href="https://github.com"
+          href="https://github.com/azharalifauzi"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -23,7 +23,7 @@ const Footer = () => {
         </a>
         <a
           className="mr-3 last:mr-0"
-          href="https://github.com"
+          href="https://gitlab.com/azharalifauzi"
           target="_blank"
           rel="noopener noreferrer"
         >
