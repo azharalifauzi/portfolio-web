@@ -1,0 +1,13 @@
+{
+  "name": "portfolio-website",
+  "version": "1.0.0",
+  "private": true,
+  "author": "Azhar Ali <azharaliauzi@gmail.com> (http://github.com/azharalifauzi)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azharalifauzi/portfolio-web"
+  },
+  "devDependencies": {
+    "husky": "4.3.8"
+  }
+}
