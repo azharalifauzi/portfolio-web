@@ -9,17 +9,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"github.com/joho/godotenv"
 )
 
-
 func main() {
-	err := godotenv.Load(".env")
-
-	if err != nil {
-		log.Fatal(err.Error())
-	}
-
 	router := gin.Default()
 	router.Static("/images", "./images")
 	router.GET("/", home)
@@ -67,7 +59,7 @@ func uploadFile(c *gin.Context) {
 	}
 
 	res := gin.H{
-		"path": path,
+		"path":    path,
 		"message": "success upload file",
 	}
 
@@ -106,7 +98,7 @@ func updateFile(c *gin.Context) {
 	}
 
 	res := gin.H{
-		"path": path,
+		"path":    path,
 		"message": "success update file",
 	}
 
