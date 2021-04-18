@@ -1,11 +1,15 @@
 import { IResolvers } from 'apollo-server-express';
+import { Request } from 'express';
 import FormData from 'form-data';
 import fetch from 'node-fetch';
 
-const resolvers: IResolvers<any, { prisma: any }> = {
+const resolvers: IResolvers<any, { prisma: any; req: Request; secretKey: string }> = {
   Mutation: {
-    uploadImage: async (_, args, { prisma }) => {
+    uploadImage: async (_, args, { prisma, secretKey, req }) => {
       const { info, file } = args;
+      const { graphqlSecretKey } = req.cookies;
+
+      if (secretKey !== graphqlSecretKey) throw new Error('wrong secret key');
 
       const { filename, createReadStream } = await file.file;
       const stream = createReadStream();
@@ -54,8 +58,11 @@ const resolvers: IResolvers<any, { prisma: any }> = {
         },
       });
     },
-    updateImage: async (_, args, { prisma }) => {
+    updateImage: async (_, args, { prisma, req, secretKey }) => {
       const { info, file, id } = args;
+      const { graphqlSecretKey } = req.cookies;
+
+      if (secretKey !== graphqlSecretKey) throw new Error('wrong secret key');
 
       const imageProject = await prisma.imageProject.findUnique({
         where: {
@@ -114,8 +121,11 @@ const resolvers: IResolvers<any, { prisma: any }> = {
         },
       });
     },
-    deleteImage: async (_, args, { prisma }) => {
+    deleteImage: async (_, args, { prisma, secretKey, req }) => {
       const { id } = args;
+      const { graphqlSecretKey } = req.cookies;
+
+      if (secretKey !== graphqlSecretKey) throw new Error('wrong secret key');
 
       const imageProject = await prisma.imageProject.findUnique({
         where: {

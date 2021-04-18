@@ -1,7 +1,8 @@
 import { IResolvers } from 'apollo-server-express';
+import { Request } from 'express';
 import fetch from 'node-fetch';
 
-const resolvers: IResolvers<any, { prisma: any }> = {
+const resolvers: IResolvers<any, { prisma: any; req: Request; secretKey: string }> = {
   Query: {
     projects: async (_parent, args, { prisma }) => {
       const { sort = 'asc', sortBy = 'createdAt', filter } = args;
@@ -27,8 +28,11 @@ const resolvers: IResolvers<any, { prisma: any }> = {
     },
   },
   Mutation: {
-    createProject: async (_, args, { prisma }) => {
+    createProject: async (_, args, { prisma, req, secretKey }) => {
       const { links, ...projectArgs } = args.project;
+      const { graphqlSecretKey } = req.cookies;
+
+      if (secretKey !== graphqlSecretKey) throw new Error('wrong secret key');
 
       const project = await prisma.project.create({
         data: {
@@ -45,8 +49,11 @@ const resolvers: IResolvers<any, { prisma: any }> = {
 
       return project;
     },
-    deleteProject: async (_, args, { prisma }) => {
+    deleteProject: async (_, args, { prisma, req, secretKey }) => {
       const { id } = args;
+      const { graphqlSecretKey } = req.cookies;
+
+      if (secretKey !== graphqlSecretKey) throw new Error('wrong secret key');
 
       const project = await prisma.project.findUnique({
         where: {
@@ -93,8 +100,11 @@ const resolvers: IResolvers<any, { prisma: any }> = {
 
       return 'project deleted';
     },
-    updateProject: async (_, args, { prisma }) => {
+    updateProject: async (_, args, { prisma, req, secretKey }) => {
       const { links, ...data } = args.data;
+      const { graphqlSecretKey } = req.cookies;
+
+      if (secretKey !== graphqlSecretKey) throw new Error('wrong secret key');
 
       if (links)
         await prisma.link.deleteMany({

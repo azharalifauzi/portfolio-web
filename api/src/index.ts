@@ -6,6 +6,7 @@ import { altairExpress } from 'altair-express-middleware';
 import { graphqlUploadExpress } from 'graphql-upload';
 import { resolvers } from './resolvers';
 import { typeDefs } from './typeDefs';
+import cookieParser from 'cookie-parser';
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ async function main() {
   const prisma = new PrismaClient();
 
   const app = express();
+  app.use(cookieParser());
   app.use(graphqlUploadExpress({ maxFileSize: 1000000000, maxFiles: 10 }));
   if (process.env.NODE_ENV === 'development')
     app.use(altairExpress({ endpointURL: '/graphql/', baseURL: '/graphql/' }));
@@ -21,9 +23,12 @@ async function main() {
     typeDefs,
     resolvers,
     playground: false,
-    context: {
+    context: async ({ req, res }) => ({
       prisma,
-    },
+      secretKey: process.env.GRAPHQL_SECRET_KEY,
+      req,
+      res,
+    }),
     uploads: false,
   });
 

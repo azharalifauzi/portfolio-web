@@ -19,6 +19,7 @@ const typeDefs = gql`
     uploadImage(info: UploadImageInput, file: Upload!): ImageProject
     updateImage(id: String, info: UpdateImageInput, file: Upload): ImageProject
     deleteImage(id: String): String
+    provideSecretKey(secret: String): String
   }
 
   input FilterProject {
