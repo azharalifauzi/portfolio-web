@@ -12,7 +12,7 @@ services:
       - "80:80" # Connect localhost 80 port to container 80 port
       - "443:443"
     networks:
-      - app-network
+      - portfolio-network
     volumes:
       - web-root:/var/www/html
       - ./server/nginx/${BUILD_TARGET}/:/etc/nginx/
@@ -35,7 +35,7 @@ services:
     volumes:
       - ./filestream/:/app
     networks:
-      - app-network
+      - portfolio-network
     environment:
       - PORT=4000
   # api service
@@ -57,7 +57,7 @@ services:
       - GRAPHQL_SECRET_KEY=${GRAPHQL_SECRET_KEY}
       - POSTGRES_URL=${POSTGRES_URL}
     networks:
-      - app-network
+      - portfolio-network
   # postgres service
   postgres:
     image: postgres
@@ -66,7 +66,7 @@ services:
     ports:
       - "8080:5432"
     networks:
-      - app-network
+      - portfolio-network
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
@@ -89,7 +89,7 @@ services:
     ports:
       - "3000"
     networks:
-      - app-network
+      - portfolio-network
     environment:
       - CHOKIDAR_USEPOLLING=true
   #certbot service
@@ -105,7 +105,7 @@ services:
     command: certonly --webroot --webroot-path=/var/www/html --email azharalifauzi@gmail.com --agree-tos --no-eff-email --force-renewal -d azharalifauzi.dev -d www.azharalifauzi.dev
 
 networks:
-  app-network:
+  portfolio-network:
     driver: bridge
 
 volumes:
