@@ -8,13 +8,12 @@ COPY --chown=node:node . /app
 EXPOSE 5000
 
 ENV NODE_ENV=production
-RUN npm install -g ts-node-dev
-RUN npm install -g prisma@^2.20.1
-RUN npm install --production
+RUN npm install
+RUN npm build
 
 USER node
 
-CMD ["npm", "start"]
+CMD ["node", "./dist/index.js"]
 
 FROM base as dev
 
