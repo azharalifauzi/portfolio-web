@@ -9,7 +9,7 @@ EXPOSE 5000
 
 ENV NODE_ENV=production
 RUN npm install -g ts-node-dev
-RUN npm install -g prisma
+RUN npm install -g prisma@^2.20.1
 RUN npm install --production
 
 USER node

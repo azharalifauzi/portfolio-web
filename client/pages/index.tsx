@@ -56,17 +56,27 @@ interface HomePageProps {
 }
 
 export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
-  const { data } = await client.query({
-    query: GET_PROJECTS,
-  });
+  try {
+    const { data } = await client.query({
+      query: GET_PROJECTS,
+    });
 
-  return {
-    props: {
-      featuredProjects: data.featuredProjects,
-      normalProjects: data.normalProjects,
-    },
-    revalidate: 60,
-  };
+    return {
+      props: {
+        featuredProjects: data.featuredProjects,
+        normalProjects: data.normalProjects,
+      },
+      revalidate: 60,
+    };
+  } catch (e) {
+    return {
+      props: {
+        featuredProjects: [],
+        normalProjects: [],
+      },
+      revalidate: 60,
+    };
+  }
 };
 
 export default function Home({

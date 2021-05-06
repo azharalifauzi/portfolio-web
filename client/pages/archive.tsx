@@ -29,16 +29,24 @@ interface ArchivePage {
 
 export const getStaticProps: GetStaticProps<ArchivePage> = async () => {
   // ...
-  const { data } = await client.query({
-    query: GET_PROJECTS,
-  });
+  try {
+    const { data } = await client.query({
+      query: GET_PROJECTS,
+    });
 
-  return {
-    props: {
-      projects: data.projects,
-    },
-    revalidate: 60,
-  };
+    return {
+      props: {
+        projects: data.projects,
+      },
+      revalidate: 60,
+    };
+  } catch (e) {
+    return {
+      props: {
+        projects: [],
+      },
+    };
+  }
 };
 
 const ArchivePage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ projects }) => {
