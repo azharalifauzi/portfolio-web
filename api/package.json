@@ -8,7 +8,7 @@
     "dev": "ts-node-dev --poll src/index.ts",
     "postbuild": "cpy '**/*' '!**/*.ts' ../dist --cwd=src --no-overwrite --parents",
     "prebuild": "del dist/",
-    "build": "tsc --build tsconfig.build.json"
+    "build": "tsc --build"
   },
   "keywords": [],
   "author": "",
