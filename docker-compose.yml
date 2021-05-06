@@ -15,10 +15,6 @@ services:
       - portfolio-network
     volumes:
       - ./server/nginx/${BUILD_TARGET}/:/etc/nginx/
-    depends_on:
-      - api
-      - client
-      - filestream
   # filestream service
   filestream:
     build:
@@ -36,16 +32,17 @@ services:
     environment:
       - PORT=4000
   # api service
-  api:
+  graphql:
     build:
       context: ./api
       target: ${BUILD_TARGET}
       dockerfile: Dockerfile
-    image: azharalifauzi/portfolio-web-api
-    container_name: portfolio-web-api
+    image: azharalifauzi/pw-gql
+    container_name: pw-gql
     volumes:
       - ./api/:/app
       - /app/node_modules
+      - /app/dist
     ports:
       - "5000"
     depends_on:
@@ -82,8 +79,6 @@ services:
         target: /app
       - /app/node_modules
       - /app/.next
-    depends_on:
-      - api
     ports:
       - "3001:3000"
     networks:

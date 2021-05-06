@@ -5,7 +5,7 @@ FROM base as production
 WORKDIR /app
 COPY  --chown=node:node package.json package-lock.json /app/
 COPY --chown=node:node . /app
-EXPOSE 5000
+EXPOSE 5001
 
 ENV NODE_ENV=production
 RUN npm install -g prisma@2.20.1
@@ -14,7 +14,7 @@ RUN npm run build
 
 USER node
 
-CMD ["node", "dist/index.js"]
+CMD ["node", "dist/src/index.js"]
 
 FROM base as dev
 
