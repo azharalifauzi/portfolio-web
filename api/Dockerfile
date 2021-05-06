@@ -8,9 +8,9 @@ COPY --chown=node:node . /app
 EXPOSE 5000
 
 ENV NODE_ENV=production
-RUN npm install
 RUN npm install -g prisma@2.20.1
-RUN npm build
+RUN npm install
+RUN npm run build
 
 USER node
 
