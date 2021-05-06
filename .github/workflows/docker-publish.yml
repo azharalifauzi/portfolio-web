@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
-        run: docker-compose build api client filestream
+        run: docker-compose build graphql client filestream
         env:
           BUILD_TARGET: prod
       - name: Login to Docker Hub
@@ -18,7 +18,7 @@ jobs:
           username: azharalifauzi
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       - name: Push to Docker Hub
-        run: docker-compose push api client filestream
+        run: docker-compose push graphql client filestream
   deploy:
     name: Deploy to Digitalocean
     runs-on: ubuntu-latest
@@ -32,7 +32,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd portfolio-web/
-            docker-compose pull api client filestream
+            docker-compose pull graphql client filestream
             git pull origin master
-            docker-compose rm --stop --force api client filestream
-            docker-compose up -d api client filestream
+            docker-compose rm --stop --force graphql client filestream
+            docker-compose up -d graphql client filestream
