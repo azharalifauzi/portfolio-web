@@ -14,10 +14,7 @@ services:
     networks:
       - portfolio-network
     volumes:
-      - web-root:/var/www/html
       - ./server/nginx/${BUILD_TARGET}/:/etc/nginx/
-      - certbot-etc:/etc/letsencrypt
-      - certbot-var:/var/lib/letsencrypt
     depends_on:
       - api
       - client
@@ -64,7 +61,7 @@ services:
     volumes:
       - data-volume:/var/lib/postgresql/data/
     ports:
-      - "8080:5432"
+      - "5432:5432"
     networks:
       - portfolio-network
     environment:
@@ -87,22 +84,11 @@ services:
     depends_on:
       - api
     ports:
-      - "3000"
+      - "3001:3000"
     networks:
       - portfolio-network
     environment:
       - CHOKIDAR_USEPOLLING=true
-  #certbot service
-  certbot:
-    image: certbot/certbot
-    container_name: certbot
-    volumes:
-      - certbot-etc:/etc/letsencrypt
-      - certbot-var:/var/lib/letsencrypt
-      - web-root:/var/www/html
-    depends_on:
-      - server
-    command: certonly --webroot --webroot-path=/var/www/html --email azharalifauzi@gmail.com --agree-tos --no-eff-email --force-renewal -d azharalifauzi.dev -d www.azharalifauzi.dev
 
 networks:
   portfolio-network:
@@ -111,7 +97,5 @@ networks:
 volumes:
   data-volume:
   node_modules:
-  certbot-etc:
-  certbot-var:
   web-root:
     driver: local
