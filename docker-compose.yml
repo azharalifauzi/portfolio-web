@@ -9,8 +9,8 @@ services:
     image: portfolio-web-server
     container_name: portfolio-web-server
     ports:
-      - "80:80" # Connect localhost 80 port to container 80 port
-      - "443:443"
+      - "8082:80" # Connect localhost 80 port to container 80 port
+      - "8083:443"
     networks:
       - app-network
     volumes:
