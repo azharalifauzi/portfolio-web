@@ -6,4 +6,4 @@ FROM base as dev
 COPY nginx/dev/ /etc/
 
 FROM base as production
-COPY nginx/prod/ /etc/
+COPY nginx/production/ /etc/
