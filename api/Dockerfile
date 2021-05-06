@@ -14,14 +14,14 @@ RUN npm run build
 
 USER node
 
-CMD ["node", "./dist/index.js"]
+CMD ["node", "dist/index.js"]
 
 FROM base as dev
 
 WORKDIR /app
 COPY package.json package-lock.json /app/
 COPY . /app
-EXPOSE 5000
+EXPOSE 5001
 
 ENV NODE_ENV=development
 RUN npm install -g ts-node-dev
