@@ -1,4 +1,9 @@
-FROM nginx
+FROM nginx as base
 
-COPY nginx/ /etc/
-COPY certs/ /etc/nginx/
+COPY index.html /var/www/html/
+
+FROM base as dev
+COPY nginx/dev/ /etc/
+
+FROM base as prod
+COPY nginx/prod/ /etc/

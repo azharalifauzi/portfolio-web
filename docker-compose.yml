@@ -7,21 +7,29 @@ services:
       context: ./server
       dockerfile: Dockerfile
     image: portfolio-web-server
+    container_name: portfolio-web-server
     ports:
       - "80:80" # Connect localhost 80 port to container 80 port
       - "443:443"
     networks:
       - app-network
     volumes:
-      - ./server/nginx/:/etc/nginx/
-      - ./server/certs/:/etc/nginx/certs
+      - web-root:/var/www/html
+      - ./server/nginx/${BUILD_TARGET}/:/etc/nginx/
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+    depends_on:
+      - api
+      - client
+      - filestream
   # filestream service
   filestream:
     build:
       context: ./filestream
       dockerfile: Dockerfile
       target: ${BUILD_TARGET}
-    image: portfolio-web-filestream
+    image: azharalifauzi/portfolio-web-filestream
+    container_name: portfolio-web-filestream
     ports:
       - "4000"
     volumes:
@@ -36,9 +44,8 @@ services:
       context: ./api
       target: ${BUILD_TARGET}
       dockerfile: Dockerfile
-    image: portfolio-web-api
+    image: azharalifauzi/portfolio-web-api
     container_name: portfolio-web-api
-    command: npm run dev
     volumes:
       - ./api/:/app
       - /app/node_modules
@@ -70,9 +77,8 @@ services:
       context: ./client
       target: ${BUILD_TARGET}
       dockerfile: Dockerfile
-    image: portfolio-web-client
+    image: azharalifauzi/portfolio-web-client
     container_name: portfolio-web-client
-    command: yarn dev
     volumes:
       - type: bind
         source: ./client/
@@ -81,11 +87,22 @@ services:
     depends_on:
       - api
     ports:
-      - "3000:3000"
+      - "3000"
     networks:
       - app-network
     environment:
       - CHOKIDAR_USEPOLLING=true
+  #certbot service
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+      - web-root:/var/www/html
+    depends_on:
+      - server
+    command: certonly --webroot --webroot-path=/var/www/html --email azharalifauzi@gmail.com --agree-tos --no-eff-email --force-renewal -d azharalifauzi.dev -d www.azharalifauzi.dev
 
 networks:
   app-network:
@@ -94,5 +111,7 @@ networks:
 volumes:
   data-volume:
   node_modules:
+  certbot-etc:
+  certbot-var:
   web-root:
     driver: local
