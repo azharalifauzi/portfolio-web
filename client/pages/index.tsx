@@ -70,6 +70,8 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
       revalidate: 60,
     };
   } catch (e) {
+    console.warn(e);
+
     return {
       props: {
         featuredProjects: [],

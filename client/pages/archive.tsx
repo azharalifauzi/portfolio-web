@@ -42,6 +42,8 @@ export const getStaticProps: GetStaticProps<ArchivePage> = async () => {
       revalidate: 60,
     };
   } catch (e) {
+    console.warn(e);
+
     return {
       props: {
         projects: [],
