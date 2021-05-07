@@ -15,7 +15,7 @@ const Footer = () => {
         </a>
         <a
           className="mr-3 last:mr-0"
-          href="https://github.com"
+          href="https://www.linkedin.com/in/azhar-ali-4564a117a/"
           target="_blank"
           rel="noopener noreferrer"
         >

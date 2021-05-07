@@ -49,9 +49,12 @@ const Navbar = () => {
               <Link href="/">
                 <a className="text-white font-semibold hover:text-blue mb-8">Home</a>
               </Link>
-              <Link href="/">
-                <a className="text-white font-semibold hover:text-blue mb-8">Blog</a>
-              </Link>
+              <a
+                href="https://blog.azharalifauzi.dev"
+                className="text-white font-semibold hover:text-blue mb-8"
+              >
+                Blog
+              </a>
               <Link href="/archive">
                 <a className="text-white font-semibold hover:text-blue mb-8">Archive</a>
               </Link>
@@ -67,9 +70,12 @@ const Navbar = () => {
         </AnimatePresence>
 
         <div className="sm:grid grid-flow-col auto-grid-max gap-x-12 items-center hidden">
-          <Link href="/">
-            <a className="text-white font-semibold hover:text-blue">Blog</a>
-          </Link>
+          <a
+            href="https://blog.azharalifauzi.dev"
+            className="text-white font-semibold hover:text-blue"
+          >
+            Blog
+          </a>
           <Link href="/archive">
             <a className="text-white font-semibold hover:text-blue">Archive</a>
           </Link>

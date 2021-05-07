@@ -9,6 +9,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import { InView } from 'react-intersection-observer';
+import Head from 'next/head';
 
 const GET_PROJECTS = gql`
   query GetProjects {
@@ -108,6 +109,26 @@ export default function Home({
 
   return (
     <>
+      <Head>
+        <title>Azhar Ali Fauzi | Front End Engineer</title>
+        <meta
+          name="description"
+          content="Azhar Ali Fauzi is a Front End Engineer based on Indonesia who specialized building robust software with beautiful UI and great UX"
+        />
+        <meta name="og:title" content="Azhar Ali Fauzi | Front End Engineer" />
+        <meta
+          name="og:description"
+          content="Azhar Ali Fauzi is a Front End Engineer based on Indonesia who specialized building robust software with beautiful UI and great UX"
+        />
+        <meta name="og:type" content="website" />
+        <meta name="og:url" content="https://azharalifauzi.dev/" />
+        <meta name="twitter:creator" content="@azharalifauzi" />
+        <meta name="twitter:title" content="Azhar Ali Fauzi" />
+        <meta
+          name="twitter:description"
+          content="Azhar Ali Fauzi is a Front End Engineer based on Indonesia who specialized building robust software with beautiful UI and great UX"
+        />
+      </Head>
       <Navbar />
       <main>
         <section id="hero" className="container mx-auto mt-40 md:mt-60 px-6 md:px-10">
@@ -142,21 +163,23 @@ export default function Home({
                 great UX.
               </motion.h2>
               <motion.div initial="initial" animate={controls} custom={3} variants={variants}>
-                <Button
-                  className="focus:outline-none"
-                  borderRadius="none"
-                  _hover={{
-                    background: 'blue',
-                  }}
-                  _active={{
-                    background: 'blue',
-                  }}
-                  textColor="white"
-                  bg="blue"
-                  paddingX="8"
-                >
-                  Get in touch
-                </Button>
+                <a href="mailto:azharalifauzi@gmail.com">
+                  <Button
+                    className="focus:outline-none"
+                    borderRadius="none"
+                    _hover={{
+                      background: 'blue',
+                    }}
+                    _active={{
+                      background: 'blue',
+                    }}
+                    textColor="white"
+                    bg="blue"
+                    paddingX="8"
+                  >
+                    Get in touch
+                  </Button>
+                </a>
               </motion.div>
             </div>
             <motion.div
@@ -375,21 +398,23 @@ export default function Home({
                 best to get back to you!
               </p>
               <div className="flex justify-center">
-                <Button
-                  className="focus:outline-none"
-                  borderRadius="none"
-                  _hover={{
-                    background: 'blue',
-                  }}
-                  _active={{
-                    background: 'blue',
-                  }}
-                  textColor="white"
-                  bg="blue"
-                  paddingX="8"
-                >
-                  Say Hello
-                </Button>
+                <a href="mailto:azharalifauzi@gmail.com">
+                  <Button
+                    className="focus:outline-none"
+                    borderRadius="none"
+                    _hover={{
+                      background: 'blue',
+                    }}
+                    _active={{
+                      background: 'blue',
+                    }}
+                    textColor="white"
+                    bg="blue"
+                    paddingX="8"
+                  >
+                    Say Hello
+                  </Button>
+                </a>
               </div>
             </motion.section>
           )}

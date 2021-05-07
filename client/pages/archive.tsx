@@ -5,6 +5,7 @@ import { IconGithub, IconLaunch } from 'assets';
 import { Footer, Navbar, TableGrid } from 'components';
 import { motion } from 'framer-motion';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import Head from 'next/head';
 
 const GET_PROJECTS = gql`
   query GetProjects {
@@ -45,6 +46,7 @@ export const getStaticProps: GetStaticProps<ArchivePage> = async () => {
       props: {
         projects: [],
       },
+      revalidate: 60,
     };
   }
 };
@@ -65,6 +67,26 @@ const ArchivePage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
   return (
     <>
+      <Head>
+        <title>Azhar Ali Fauzi | Front End Engineer</title>
+        <meta
+          name="description"
+          content="Azhar Ali Fauzi is a Front End Engineer based on Indonesia who specialized building robust software with beautiful UI and great UX"
+        />
+        <meta name="og:title" content="Azhar Ali Fauzi | Front End Engineer" />
+        <meta
+          name="og:description"
+          content="Azhar Ali Fauzi is a Front End Engineer based on Indonesia who specialized building robust software with beautiful UI and great UX"
+        />
+        <meta name="og:type" content="website" />
+        <meta name="og:url" content="https://azharalifauzi.dev/" />
+        <meta name="twitter:creator" content="@azharalifauzi" />
+        <meta name="twitter:title" content="Azhar Ali Fauzi" />
+        <meta
+          name="twitter:description"
+          content="Azhar Ali Fauzi is a Front End Engineer based on Indonesia who specialized building robust software with beautiful UI and great UX"
+        />
+      </Head>
       <Navbar />
       <section id="id" className="container mx-auto md:px-10 px-6 mt-40">
         <motion.h1
