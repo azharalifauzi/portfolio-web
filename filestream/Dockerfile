@@ -18,6 +18,6 @@ RUN go build -o main .
 
 WORKDIR /dist
 
-RUN cp /app/main .
+RUN cp /app/main . && cp /app/index.html .
 
 CMD ["/dist/main"]

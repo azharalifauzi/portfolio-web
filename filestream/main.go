@@ -51,10 +51,15 @@ func uploadFile(c *gin.Context) {
 
 	path := fmt.Sprintf("images/%s-%s-%s", fileName, uuid.New().String(), slug)
 
+	if _, err := os.Stat("./images"); os.IsNotExist(err) {
+		os.Mkdir("./images", 700)
+	}
+
 	err = c.SaveUploadedFile(file, path)
 
 	if err != nil {
 		c.JSON(500, gin.H{"message": "Error upload file"})
+		log.Print(err)
 		return
 	}
 
@@ -94,6 +99,7 @@ func updateFile(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(500, gin.H{"message": "Error update file"})
+		log.Print(err)
 		return
 	}
 

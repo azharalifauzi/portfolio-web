@@ -28,6 +28,7 @@ services:
     volumes:
       - ./filestream/:/app
       - /app/images/
+      - /dist/images/
     networks:
       - portfolio-network
     environment:
