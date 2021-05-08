@@ -1,4 +1,4 @@
-import { Badge } from '@chakra-ui/layout';
+import { Badge, Grid } from '@chakra-ui/layout';
 import { IconGithub, IconLaunch, ImgDummy } from 'assets';
 import clsx from 'clsx';
 import { List } from 'components';
@@ -119,13 +119,13 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({
             ))}
           </div>
           <p className="text-black">{description}</p>
-          <div className="mt-3">
+          <Grid mt="3" gap="2">
             {achievements?.map((achievement) => (
               <List key={achievement} size="sm">
                 {achievement}
               </List>
             ))}
-          </div>
+          </Grid>
         </div>
       </div>
     </>

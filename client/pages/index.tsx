@@ -4,7 +4,7 @@ import { client } from 'apollo-client';
 import { IconCodeThinking, ImgMe } from 'assets';
 import { Card, FeaturedProject, Footer, List, Navbar } from 'components';
 import { motion, useAnimation } from 'framer-motion';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
@@ -56,18 +56,19 @@ interface HomePageProps {
   normalProjects: Project[];
 }
 
-export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
+export const getServerSideProps: GetServerSideProps<HomePageProps> = async ({ res }) => {
   try {
     const { data } = await client.query({
       query: GET_PROJECTS,
     });
+
+    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
 
     return {
       props: {
         featuredProjects: data.featuredProjects,
         normalProjects: data.normalProjects,
       },
-      revalidate: 1,
     };
   } catch (e) {
     console.warn(e);
@@ -77,7 +78,6 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
         featuredProjects: [],
         normalProjects: [],
       },
-      revalidate: 1,
     };
   }
 };
@@ -85,7 +85,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
 export default function Home({
   normalProjects,
   featuredProjects,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const controls = useAnimation();
 
   useEffect(() => {

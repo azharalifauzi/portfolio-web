@@ -4,7 +4,7 @@ import { client } from 'apollo-client';
 import { IconGithub, IconLaunch } from 'assets';
 import { Footer, Navbar, TableGrid } from 'components';
 import { motion } from 'framer-motion';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Head from 'next/head';
 
 const GET_PROJECTS = gql`
@@ -28,18 +28,19 @@ interface ArchivePage {
   projects: Project[];
 }
 
-export const getStaticProps: GetStaticProps<ArchivePage> = async () => {
+export const getServerSideProps: GetServerSideProps<ArchivePage> = async ({ res }) => {
   // ...
   try {
     const { data } = await client.query({
       query: GET_PROJECTS,
     });
 
+    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
+
     return {
       props: {
         projects: data.projects,
       },
-      revalidate: 1,
     };
   } catch (e) {
     console.warn(e);
@@ -48,12 +49,13 @@ export const getStaticProps: GetStaticProps<ArchivePage> = async () => {
       props: {
         projects: [],
       },
-      revalidate: 1,
     };
   }
 };
 
-const ArchivePage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ projects }) => {
+const ArchivePage: React.FC<InferGetServerSidePropsType<typeof getServerSideProps>> = ({
+  projects,
+}) => {
   const isMobile = useMediaQuery('(max-width: 1024px)');
 
   const variants = {
