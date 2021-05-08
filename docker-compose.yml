@@ -27,8 +27,7 @@ services:
       - "4000"
     volumes:
       - ./filestream/:/app
-      - /app/images/
-      - /dist/images/
+      - data-images:/dist/images/
     networks:
       - portfolio-network
     environment:
@@ -96,5 +95,6 @@ networks:
 volumes:
   data-volume:
   node_modules:
+  data-images:
   web-root:
     driver: local
