@@ -39,7 +39,7 @@ export const getStaticProps: GetStaticProps<ArchivePage> = async () => {
       props: {
         projects: data.projects,
       },
-      revalidate: 60,
+      revalidate: 1,
     };
   } catch (e) {
     console.warn(e);
@@ -48,7 +48,7 @@ export const getStaticProps: GetStaticProps<ArchivePage> = async () => {
       props: {
         projects: [],
       },
-      revalidate: 60,
+      revalidate: 1,
     };
   }
 };

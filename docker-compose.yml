@@ -87,6 +87,7 @@ services:
       - portfolio-network
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - GRAPHQL_CLIENT_URL=${GRAPHQL_CLIENT_URL} # useful for building isr inside ci / cd pipeline
 
 networks:
   portfolio-network:

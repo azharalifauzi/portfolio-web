@@ -67,7 +67,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
         featuredProjects: data.featuredProjects,
         normalProjects: data.normalProjects,
       },
-      revalidate: 60,
+      revalidate: 1,
     };
   } catch (e) {
     console.warn(e);
@@ -77,7 +77,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
         featuredProjects: [],
         normalProjects: [],
       },
-      revalidate: 60,
+      revalidate: 1,
     };
   }
 };
