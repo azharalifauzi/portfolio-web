@@ -58,13 +58,15 @@ const Navbar = () => {
               <Link href="/archive">
                 <a className="text-white font-semibold hover:text-blue mb-8">Archive</a>
               </Link>
-              <Button
-                variant="outline"
-                className="border-[#2B98FD] text-[#2B98FD] hover:bg-[#2B98FD] hover:bg-opacity-20"
-                borderWidth={2}
-              >
-                Resume
-              </Button>
+              <a href="https://resume.io/r/tTMw2DqOi">
+                <Button
+                  variant="outline"
+                  className="border-[#2B98FD] text-[#2B98FD] hover:bg-[#2B98FD] hover:bg-opacity-20"
+                  borderWidth={2}
+                >
+                  Resume
+                </Button>
+              </a>
             </motion.div>
           )}
         </AnimatePresence>
@@ -79,13 +81,15 @@ const Navbar = () => {
           <Link href="/archive">
             <a className="text-white font-semibold hover:text-blue">Archive</a>
           </Link>
-          <Button
-            variant="outline"
-            className="border-[#2B98FD] text-[#2B98FD] hover:bg-[#2B98FD] hover:bg-opacity-20"
-            borderWidth={2}
-          >
-            Resume
-          </Button>
+          <a href="https://resume.io/r/tTMw2DqOi">
+            <Button
+              variant="outline"
+              className="border-[#2B98FD] text-[#2B98FD] hover:bg-[#2B98FD] hover:bg-opacity-20"
+              borderWidth={2}
+            >
+              Resume
+            </Button>
+          </a>
         </div>
       </nav>
     </header>

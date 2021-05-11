@@ -1,15 +1,15 @@
 import { gql } from '@apollo/client';
 import { Button } from '@chakra-ui/button';
 import { client } from 'apollo-client';
-import { IconCodeThinking, ImgMe } from 'assets';
+import { IconCodeThinking, ProfessionalPhoto } from 'assets';
 import { Card, FeaturedProject, Footer, List, Navbar } from 'components';
 import { motion, useAnimation } from 'framer-motion';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import { InView } from 'react-intersection-observer';
-import Head from 'next/head';
 
 const GET_PROJECTS = gql`
   query GetProjects {
@@ -213,20 +213,20 @@ export default function Home({
                 <div className="lg:col-span-2 lg:w-[80%]">
                   <h2 className="md:text-h3 text-h4 font-semibold text-blue mb-2">About Me</h2>
                   <p className="text-black mb-3">
-                    Hello! I’m Ali, a Front End Engineer based in Bandung, Indonesia.
+                    Hello! I’m Azhar, a Front End Engineer based in Bandung, Indonesia.
                     <br />
                     <br />
-                    I have more than a year experience working as Front End Engineer, both fulltime
-                    and freelance. Become freelancer and fulltimer at the same time allow me to be
-                    involved in wide variaties projects, from individuals until enterprise level
+                    I have more than a year experience working as Front End Engineer, both full time
+                    and freelance. Become freelancer and full-timer at the same time allow me to be
+                    involved in wide varieties projects, from individuals until enterprise level
                     project. I have specialization in building web app using React library and tools
                     or framework related to that library. Even though I’m a Front End Engineer, I
                     have experience too in Back End Development, such as building REST API using
                     Node.js or Golang, or orchestrate apps using Docker or Kubernetes.
                     <br />
                     <br />I love to tinkering at the weekend, learning new things every week,
-                    espesially technologies that are currently a hot topics around the dev community
-                    such as Golang, Rust, or Flutter. And here are a few technologies I’ve been
+                    especially technologies that are currently a hot topics around the dev community
+                    such as Golang, Rust, or Blockchain. And here are a few technologies I’ve been
                     working recently:
                   </p>
                   <div className="grid grid-cols-3 max-w-[315px] gap-x-3 sm:gap-x-12 gap-y-3">
@@ -260,8 +260,8 @@ export default function Home({
                   </div>
                 </div>
                 <div className="relative lg:row-auto row-start-1">
-                  <div className="w-[314px]">
-                    <Image src={ImgMe} layout="responsive" width={1} height={1} />
+                  <div className="sm:w-[314px] w-full">
+                    <Image src={ProfessionalPhoto} layout="responsive" width={1} height={1} />
                   </div>
                   <div className="absolute z-[-1] w-[314px] h-[314px] border-8 border-grey-1 top-6 left-6 hidden lg:block"></div>
                 </div>
@@ -395,9 +395,9 @@ export default function Home({
               </h2>
               <p className="text-black text-center max-w-[664px] mx-auto mb-9">
                 Currently I’m looking for new oppurtunities for fulltime job as Front End Engineer
-                or Full Stack Engineer especially with company that offering remote job. If you have
-                a question or just want to say hi, my inbox is always open. And I&apos;ll try my
-                best to get back to you!
+                or Senior Front End Engineer especially with company that offering remote job. If
+                you have a question or just want to say hi, my inbox is always open. And I&apos;ll
+                try my best to get back to you!
               </p>
               <div className="flex justify-center">
                 <a href="mailto:azharalifauzi@gmail.com">
