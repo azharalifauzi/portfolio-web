@@ -20,21 +20,27 @@ const Card: React.FC<CardProps> = ({ className, name, description, builtWith, li
         <div className="flex items-center justify-between  w-full">
           <IconFolder />
           <div className="flex items-center">
-            {links?.map(({ id, link, type }) => (
-              <a
-                key={id}
-                className="mr-3 last:mr-0"
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {type === 'github' ? (
-                  <IconGithub className="ic-stroke-blue" />
-                ) : (
-                  <IconLaunch className="ic-fill-blue" />
-                )}
-              </a>
-            ))}
+            {links
+              ?.sort((a, b) => {
+                if (a.type < b.type) return 1;
+                if (a.type > b.type) return -1;
+                return 0;
+              })
+              ?.map(({ id, link, type }) => (
+                <a
+                  key={id}
+                  className="mr-3 last:mr-0"
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {type === 'github' ? (
+                    <IconGithub className="ic-stroke-blue" />
+                  ) : (
+                    <IconLaunch className="ic-fill-blue" />
+                  )}
+                </a>
+              ))}
           </div>
         </div>
         <h5 className="text-h5 font-semibold text-black mt-6 mb-3 group-hover:text-blue w-full">

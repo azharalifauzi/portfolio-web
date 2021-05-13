@@ -82,23 +82,29 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({
               </Badge>
             </div>
             <div className="flex items-center mb-2 md:mb-0">
-              {links?.map(({ type, link, id }) => {
-                return (
-                  <a
-                    key={id}
-                    className="mr-3 last:mr-0"
-                    href={link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {type === 'github' ? (
-                      <IconGithub className="ic-stroke-blue" />
-                    ) : (
-                      <IconLaunch className="ic-fill-blue" />
-                    )}
-                  </a>
-                );
-              })}
+              {links
+                ?.sort((a, b) => {
+                  if (a.type < b.type) return 1;
+                  if (a.type > b.type) return -1;
+                  return 0;
+                })
+                ?.map(({ type, link, id }) => {
+                  return (
+                    <a
+                      key={id}
+                      className="mr-3 last:mr-0"
+                      href={link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {type === 'github' ? (
+                        <IconGithub className="ic-stroke-blue" />
+                      ) : (
+                        <IconLaunch className="ic-fill-blue" />
+                      )}
+                    </a>
+                  );
+                })}
             </div>
           </div>
           <h6 className="text-body text-grey-1 mb-4">{role}</h6>

@@ -186,15 +186,21 @@ const ArchivePage: React.FC<InferGetServerSidePropsType<typeof getServerSideProp
               if (field === 'links')
                 return (
                   <div key={key} className="grid grid-flow-col auto-cols-max gap-x-4">
-                    {value?.map(({ id, type, link }) => (
-                      <a href={link} key={id} target="_blank" rel="noopener noreferrer">
-                        {type === 'website' ? (
-                          <IconLaunch className="ic-fill-blue" />
-                        ) : (
-                          <IconGithub className="ic-stroke-blue" />
-                        )}
-                      </a>
-                    ))}
+                    {value
+                      ?.sort((a, b) => {
+                        if (a.type < b.type) return 1;
+                        if (a.type > b.type) return -1;
+                        return 0;
+                      })
+                      ?.map(({ id, type, link }) => (
+                        <a href={link} key={id} target="_blank" rel="noopener noreferrer">
+                          {type === 'website' ? (
+                            <IconLaunch className="ic-fill-blue" />
+                          ) : (
+                            <IconGithub className="ic-stroke-blue" />
+                          )}
+                        </a>
+                      ))}
                   </div>
                 );
 
