@@ -58,8 +58,9 @@ interface HomePageProps {
 
 export const getServerSideProps: GetServerSideProps<HomePageProps> = async ({ res }) => {
   try {
-    const { data } = await client.query({
+    const { data } = await client({ ssrMode: true }).query({
       query: GET_PROJECTS,
+      fetchPolicy: 'no-cache',
     });
 
     res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');

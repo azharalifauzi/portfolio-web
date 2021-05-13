@@ -84,8 +84,8 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({
             <div className="flex items-center mb-2 md:mb-0">
               {links
                 ?.sort((a, b) => {
-                  if (a.type < b.type) return 1;
-                  if (a.type > b.type) return -1;
+                  if (a.type < b.type) return -1;
+                  if (a.type > b.type) return 1;
                   return 0;
                 })
                 ?.map(({ type, link, id }) => {

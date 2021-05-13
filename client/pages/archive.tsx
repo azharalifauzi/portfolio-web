@@ -31,8 +31,9 @@ interface ArchivePage {
 export const getServerSideProps: GetServerSideProps<ArchivePage> = async ({ res }) => {
   // ...
   try {
-    const { data } = await client.query({
+    const { data } = await client({ ssrMode: true }).query({
       query: GET_PROJECTS,
+      fetchPolicy: 'no-cache',
     });
 
     res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
@@ -188,8 +189,8 @@ const ArchivePage: React.FC<InferGetServerSidePropsType<typeof getServerSideProp
                   <div key={key} className="grid grid-flow-col auto-cols-max gap-x-4">
                     {value
                       ?.sort((a, b) => {
-                        if (a.type < b.type) return 1;
-                        if (a.type > b.type) return -1;
+                        if (a.type < b.type) return -1;
+                        if (a.type > b.type) return 1;
                         return 0;
                       })
                       ?.map(({ id, type, link }) => (

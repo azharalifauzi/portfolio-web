@@ -18,7 +18,7 @@ const theme = extendTheme({
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ApolloProvider client={client}>
+    <ApolloProvider client={client()}>
       <ChakraProvider theme={theme}>
         <Component {...pageProps} />
       </ChakraProvider>
