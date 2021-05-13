@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 import { Button } from '@chakra-ui/button';
 import { client } from 'apollo-client';
-import { IconCodeThinking, ProfessionalPhoto } from 'assets';
+import { IconCodeThinking, ImgMe } from 'assets';
 import { Card, FeaturedProject, Footer, List, Navbar } from 'components';
 import { motion, useAnimation } from 'framer-motion';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
@@ -124,12 +124,14 @@ export default function Home({
         />
         <meta name="og:type" content="website" />
         <meta name="og:url" content="https://azharalifauzi.dev/" />
+        <meta name="og:image" content="https://azharalifauzi.dev/og-image.png" />
         <meta name="twitter:creator" content="@azharalifauzi" />
         <meta name="twitter:title" content="Azhar Ali Fauzi" />
         <meta
           name="twitter:description"
           content="Azhar Ali Fauzi is a Front End Engineer based on Indonesia who specialized building robust software with beautiful UI and great UX"
         />
+        <meta name="twitter:image" content="https://azharalifauzi.dev/og-image.png" />
       </Head>
       <Navbar />
       <main>
@@ -261,7 +263,7 @@ export default function Home({
                 </div>
                 <div className="relative lg:row-auto row-start-1">
                   <div className="sm:w-[314px] w-full">
-                    <Image src={ProfessionalPhoto} layout="responsive" width={1} height={1} />
+                    <Image src={ImgMe} layout="responsive" width={1} height={1} />
                   </div>
                   <div className="absolute z-[-1] w-[314px] h-[314px] border-8 border-grey-1 top-6 left-6 hidden lg:block"></div>
                 </div>

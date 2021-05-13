@@ -31,7 +31,7 @@ const Card: React.FC<CardProps> = ({ className, name, description, builtWith, li
                 {type === 'github' ? (
                   <IconGithub className="ic-stroke-blue" />
                 ) : (
-                  <IconLaunch className="ic-stroke-blue" />
+                  <IconLaunch className="ic-fill-blue" />
                 )}
               </a>
             ))}

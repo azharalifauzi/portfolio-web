@@ -189,7 +189,7 @@ const ArchivePage: React.FC<InferGetServerSidePropsType<typeof getServerSideProp
                     {value?.map(({ id, type, link }) => (
                       <a href={link} key={id} target="_blank" rel="noopener noreferrer">
                         {type === 'website' ? (
-                          <IconLaunch className="ic-stroke-blue" />
+                          <IconLaunch className="ic-fill-blue" />
                         ) : (
                           <IconGithub className="ic-stroke-blue" />
                         )}
