@@ -62,7 +62,7 @@ const TableGrid: React.FC<TableGridProps> = ({
       <div className="w-full">
         {data?.map((value, i) => {
           return (
-            <InView threshold={0.5} key={`table-grid-${i}`}>
+            <InView triggerOnce threshold={0} key={`table-grid-${i}`}>
               {({ ref, inView }) => (
                 <motion.div
                   animate={inView ? 'show' : 'initial'}

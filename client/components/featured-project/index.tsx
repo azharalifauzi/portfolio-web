@@ -47,7 +47,7 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({
         <div className="mb-5 lg:mb-0">
           <button
             onClick={() => setShowAllImages(true)}
-            className="max-w-[485px] group cursor-pointer relative relative overflow-hidden focus:outline-none block w-full"
+            className="max-w-[485px] group cursor-pointer relative relative overflow-hidden ring-blue focus-visible:ring focus:outline-none block w-full"
           >
             <Image
               src={primaryImage ? `http://filestream:4000/${primaryImage?.url}` : ImgDummy}

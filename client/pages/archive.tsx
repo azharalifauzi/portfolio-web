@@ -78,19 +78,23 @@ const ArchivePage: React.FC<InferGetServerSidePropsType<typeof getServerSideProp
           name="description"
           content="Azhar Ali Fauzi is a Front End Engineer based on Indonesia who specialized building robust software with beautiful UI and great UX"
         />
-        <meta name="og:title" content="Azhar Ali Fauzi | Front End Engineer" />
+        <meta property="og:title" content="Azhar Ali Fauzi | Front End Engineer" />
         <meta
-          name="og:description"
+          property="og:description"
           content="Azhar Ali Fauzi is a Front End Engineer based on Indonesia who specialized building robust software with beautiful UI and great UX"
         />
-        <meta name="og:type" content="website" />
-        <meta name="og:url" content="https://azharalifauzi.dev/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://azharalifauzi.dev/" />
+        <meta property="og:image" content="https://azharalifauzi.dev/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content="@azharalifauzi" />
-        <meta name="twitter:title" content="Azhar Ali Fauzi" />
+        <meta name="twitter:title" content="Azhar Ali Fauzi | Front End Engineer" />
         <meta
           name="twitter:description"
           content="Azhar Ali Fauzi is a Front End Engineer based on Indonesia who specialized building robust software with beautiful UI and great UX"
         />
+        <meta name="twitter:image" content="https://azharalifauzi.dev/og-image.png" />
+        <meta name="robots" content="index, follow" />
       </Head>
       <Navbar />
       <section id="id" className="container mx-auto md:px-10 px-6 mt-40">

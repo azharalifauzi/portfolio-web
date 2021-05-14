@@ -6,9 +6,7 @@ module.exports = withPlugins([[withImages, { fileExtensions: ['jpg', 'jpeg', 'pn
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
-      issuer: {
-        test: /\.(js|ts)x?$/,
-      },
+      issuer: /\.(js|ts)x?$/,
       use: [
         {
           loader: '@svgr/webpack',
@@ -29,5 +27,8 @@ module.exports = withPlugins([[withImages, { fileExtensions: ['jpg', 'jpeg', 'pn
   },
   images: {
     domains: ['filestream', 'azharalifauzi.dev'],
+  },
+  future: {
+    webpack5: true,
   },
 });
