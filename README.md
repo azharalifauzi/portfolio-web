@@ -20,7 +20,7 @@
 | Grey 1 | ![#78797A](https://via.placeholder.com/10/78797A?text=+) `#78797A` |
 | Grey 2 | ![#F0F0F0](https://via.placeholder.com/10/F0F0F0?text=+) `#F0F0F0` |
 
-## Installation
+## 🛠 Installation
 
 1. install [Docker](https://docs.docker.com/get-docker/) on your machine.
 
@@ -49,6 +49,6 @@ To see GraphQL API, go to [`http://localhost:8082/graphql/`](http://localhost:80
 
 Happy Coding :)
 
-## Deployment
+## 💻 Deployment
 
 Coming Soon :) .
