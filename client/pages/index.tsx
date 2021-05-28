@@ -400,9 +400,9 @@ export default function Home({
               </h2>
               <p className="text-black text-center max-w-[664px] mx-auto mb-9">
                 Currently I’m looking for new oppurtunities for fulltime job as Front End Engineer
-                or Senior Front End Engineer especially with company that offering remote job. If
-                you have a question or just want to say hi, my inbox is always open. And I&apos;ll
-                try my best to get back to you!
+                or Full Stack Engineer especially with company that offering remote job. If you have
+                a question or just want to say hi, my inbox is always open. And I&apos;ll try my
+                best to get back to you!
               </p>
               <div className="flex justify-center">
                 <a href="mailto:azharalifauzi@gmail.com">
