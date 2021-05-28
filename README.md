@@ -1,5 +1,5 @@
 <div align="center">
-  <img alt="Logo" src="https://azharalifauzi.dev/public/logo.svg" width="100" />
+  <img alt="Logo" src="https://azharalifauzi.dev/logo.svg" width="100" />
 </div>
 <h1 align="center">
   azharalifauzi.dev
@@ -8,7 +8,7 @@
   The first iteration of <a href="https://azharalifauzi.dev" target="_blank">azharalifauzi.dev</a> built with <a href="https://nextjs.org/" target="_blank">Next.js</a> and hosted with <a href="https://www.digitalocean.com/" target="_blank">Digitalocean</a>
 </p>
 
-![demo](https://azharalifauzi.dev/public/demo.png)
+![demo](https://azharalifauzi.dev/demo.png)
 
 ## 🎨 Color Reference
 
@@ -22,26 +22,26 @@
 
 ## Installation
 
-1. [Docker](https://docs.docker.com/get-docker/) installed on your machine.
+1. install [Docker](https://docs.docker.com/get-docker/) on your machine.
 
-1. Setup environment
+2. Setup environment
 
-```bash
-# copy environment sample to .env
-cp .env.example .env
-```
+   ```bash
+   # copy environment example to .env
+   cp .env.example .env
+   ```
 
-1. Build the images
+3. Build the images
 
-```bash
-docker-compose build
-```
+   ```bash
+   docker-compose build
+   ```
 
-1. Run the container
+4. Run the container
 
-```bash
-docker-compose up -d
-```
+   ```bash
+   docker-compose up -d
+   ```
 
 To see web app, go to [`http://localhost:8082/`](http://localhost:8082/).
 
