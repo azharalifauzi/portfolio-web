@@ -218,16 +218,14 @@ export default function Home({
                 <div className="lg:col-span-2 lg:w-[80%]">
                   <h2 className="md:text-h3 text-h4 font-semibold text-blue mb-2">About Me</h2>
                   <p className="text-black mb-3">
-                    Hello! I’m Azhar, a Front End Engineer based in Bandung, Indonesia.
+                    Hello! I’m Azhar, a Front End Developer based in Bandung, Indonesia.
                     <br />
                     <br />
-                    I have more than a year experience working as Front End Engineer, both full time
-                    and freelance. Become freelancer and full-timer at the same time allow me to be
-                    involved in wide varieties projects, from individuals until enterprise level
-                    project. I have specialization in building web app using React library and tools
-                    or framework related to that library. Even though I’m a Front End Engineer, I
-                    have experience too in Back End Development, such as building REST API using
-                    Node.js or Golang, or orchestrate apps using Docker or Kubernetes.
+                    I have 1.5 years industry experience building highly scalable web apps such as
+                    Enterprise Resource Planning Software, Content Management System, and Web Based
+                    Banking System. Proficient in HTML, CSS, Javascript, Typescript, and modern
+                    Javascript Library such as React. Also possess good understanding of UI / UX
+                    Design and Backend Development using Node.js.
                     <br />
                     <br />I love to tinkering at the weekend, learning new things every week,
                     especially technologies that are currently a hot topics around the dev community
@@ -399,10 +397,8 @@ export default function Home({
                 Get in touch
               </h2>
               <p className="text-black text-center max-w-[664px] mx-auto mb-9">
-                Currently I’m looking for new oppurtunities for fulltime job as Front End Engineer
-                or Full Stack Engineer especially with company that offering remote job. If you have
-                a question or just want to say hi, my inbox is always open. And I&apos;ll try my
-                best to get back to you!
+                Although I’m not looking for new oppurtunities. If you have a question or just want
+                to say hi, my inbox is always open. And I&apos;ll try my best to get back to you!
               </p>
               <div className="flex justify-center">
                 <a href="mailto:azharalifauzi@gmail.com">
